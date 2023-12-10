@@ -2,54 +2,51 @@
 {% load static %}
 {% block content %}
 <div class="registration-form">
-    <form>
+    {% if flag == 'register' %}
+    <form method="POST">
+        {% csrf_token %}
         <div class="form-icon">
             <img src="{% static 'img/favicon-io.png' %}">
         </div>
+        {% for field in form %}
         <div class="form-group">
-            <input type="text" class="form-control item" id="username" placeholder="Username">
+            {{field}}
         </div>
+        {% endfor %}
         <div class="form-group">
-            <input type="text" class="form-control item" id="email" placeholder="Email">
-        </div>
-        <div class="form-group">
-            <input type="password" class="form-control item" id="password" placeholder="Password">
-        </div>
-        <div class="form-group">
-            <input type="password" class="form-control item" id="password2" placeholder="Confirm Password">
-        </div>
-        <div class="form-group">
-            <button type="button" class="btn btn-block create-account">Create Atrax</button>
+            <button type="submit" class="btn btn-block create-account">Create Atrax</button>
         </div>
     </form>
     <div class="social-media">
         <h5>Already an Atrax member?</h5>
         <div class="social-icons">
-            <button type="button" class="btn btn-block create-account">Enter Atrax</button>
+            <a href="{% url 'loginUser' %}">Enter Atrax</a>
         </div>
     </div>
-</div>
-<!-- Login Form -->
-<div class="registration-form">
-    <form>
+    {% endif %}
+    <!-- Login Form -->
+    {% if flag == 'login' %}
+    <form method="POST">
+        {% csrf_token %}
         <div class="form-icon">
             <img src="{% static 'img/favicon-io.png' %}">
         </div>
         <div class="form-group">
-            <input type="text" class="form-control item" id="username" placeholder="Username">
+            <input type="text" class="form-control item" name="username" placeholder="Username">
         </div>
         <div class="form-group">
-            <input type="password" class="form-control item" id="password" placeholder="Password">
+            <input type="password" class="form-control item" name="password" placeholder="Password">
         </div>
         <div class="form-group">
-            <button type="button" class="btn btn-block create-account">Enter Atrax</button>
+            <button type="submit" class="btn btn-block create-account">Enter Atrax</button>
         </div>
     </form>
     <div class="social-media">
         <h5>Not an Atrax member?</h5>
         <div class="social-icons">
-            <button type="button" class="btn btn-block create-account">Create Atrax</button>
+            <a href="{% url 'registerUser' %}">Register Atrax</a>
         </div>
     </div>
+    {% endif %}
 </div>
 {% endblock content %}

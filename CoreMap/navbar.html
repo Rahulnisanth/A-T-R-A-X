@@ -2,7 +2,8 @@
 {% block content %}
 <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
-        <h1 class="logo me-auto"><a href="{% url 'homePage' %}"><img src="{% static 'img/favicon-io.png' %}"> Atrax</a>
+        <img style="height: 55px;width: 55px;" src="{% static 'img/favicon-io.png' %}">
+        <h1 class="logo me-auto"><a href="{% url 'homePage' %}"> Atrax</a>
         </h1>
         <nav id="navbar" class="navbar order-last order-lg-0">
             <ul>
@@ -10,19 +11,24 @@
                 <li><a href="{% url 'JobFosters' %}">Fosters</a></li>
                 <li><a href="{% url 'projects' %}">Projects</a></li>
                 <li><a href="{% url 'events' %}">Events</a></li>
-                <li class="dropdown"><a href="#"><span>Atrax Alumnis</span> <i class="bi bi-chevron-down"></i></a>
+                <li class="dropdown"><a href="#"><span>Atrax Alumnis</span></a>
                     <ul>
-                        <li><a href="#">Batch 1</a></li>
-                        <li><a href="#">Batch 2</a></li>
-                        <li><a href="#">Batch 3</a></li>
-                        <li><a href="#">Batch 4</a></li>
-                        <li><a href="#">Batch 5</a></li>
+                        <li><a href="#">CSE</a></li>
+                        <li><a href="#">IT</a></li>
+                        <li><a href="#">AIDS</a></li>
+                        <li><a href="#">AIML</a></li>
+                        <li><a href="#">ECE</a></li>
+                        <li><a href="#">CYBER</a></li>
                     </ul>
                 </li>
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
         </nav>
-        <a href="{% url 'authentication' %}" class="get-started-btn">Join Atrax</a>
+        {% if request.user.is_authenticated %}
+        <a class="profileIcon" href="#"><i class="bi bi-person-circle"></i></a>
+        {% else %}
+        <a href="{% url 'loginUser' %}" class="get-started-btn">Join Atrax</a>
+        {% endif %}
     </div>
 </header>
 {% endblock content %}

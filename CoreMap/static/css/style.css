@@ -304,6 +304,19 @@ h6 {
   }
 }
 
+.profileIcon {
+  color: #18d26e;
+  font-size: 2rem;
+  margin-left: 1rem;
+  padding: 0 5px 0 5px;
+}
+
+@media (max-width:600px) {
+  #header .logo a {
+    display: none !important;
+  }
+}
+
 .navbar-mobile {
   position: fixed;
   overflow: hidden;
@@ -1614,14 +1627,7 @@ section {
   font-size: 20px;
   margin: 0 3px;
   color: #5fcf80;
-  border: 1px solid;
-  border-radius: 50%;
-  width: 45px;
-  display: inline-block;
-  height: 45px;
   text-align: center;
-  background-color: #fff;
-  line-height: 45px;
 }
 
 .registration-form .social-icons a:hover {
