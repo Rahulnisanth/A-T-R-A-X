@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # Added Apps ->
-    "Alumnis",
+    "Alumnis.apps.AlumnisConfig",
+    "user.apps.UserConfig",
 ]
 
 MIDDLEWARE = [
