@@ -2,14 +2,14 @@
 {% block content %}
 <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
-        <h1 class="logo me-auto"><a href="#">Atrax</a></h1>
+        <h1 class="logo me-auto"><a href="{% url 'homePage' %}">Atrax</a></h1>
         <nav id="navbar" class="navbar order-last order-lg-0">
             <ul>
                 <li><a href="{% url 'homePage' %}">Posts</a></li>
-                <li><a href="#">Fosters</a></li>
+                <li><a href="{% url 'JobFosters' %}">Fosters</a></li>
                 <li><a href="{% url 'projects' %}">Projects</a></li>
                 <li><a href="{% url 'events' %}">Events</a></li>
-                <li class="dropdown"><a href="#"><span>Alumni List</span> <i class="bi bi-chevron-down"></i></a>
+                <li class="dropdown"><a href="#"><span>Atrax Alumnis</span> <i class="bi bi-chevron-down"></i></a>
                     <ul>
                         <li><a href="#">Batch 1</a></li>
                         <li><a href="#">Batch 2</a></li>
@@ -21,7 +21,7 @@
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
         </nav>
-        <a href="#" class="get-started-btn">Register here</a>
+        <a href="#" class="get-started-btn">Join Atrax</a>
     </div>
 </header>
 {% endblock content %}

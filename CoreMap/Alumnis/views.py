@@ -6,8 +6,12 @@ def homePage(request):
 
 
 def projects(request):
-    return render(request, "course.html")
+    return render(request, "projects.html")
 
 
 def events(request):
     return render(request, "events.html")
+
+
+def fosters(request):
+    return render(request, "jobFosters.html")
