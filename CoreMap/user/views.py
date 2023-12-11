@@ -15,6 +15,7 @@ def LoginUser(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
+            messages.success(request, f"Atrax welcomes you {username} !")
             return redirect("/")
         else:
             messages.error(request, "Invalid username or password, Please try again!")
@@ -24,6 +25,7 @@ def LoginUser(request):
 
 def logoutUser(request):
     logout(request)
+    messages.error(request, "User have logged out from Atrax !")
     return redirect("/")
 
 
