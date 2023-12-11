@@ -108,6 +108,18 @@ h6 {
 /*--------------------------------------------------------------
 # Header
 --------------------------------------------------------------*/
+
+#alert-box {
+  margin-top: 5.5rem;
+  position: absolute;
+  z-index: 3;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: fit-content;
+}
+
 #header {
   background: #fff;
   transition: all 0.5s;
