@@ -2,8 +2,8 @@
 {% block content %}
 <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
-        <img style="height: 55px;width: 55px;" src="{% static 'img/favicon-io.png' %}">
-        <h1 class="logo me-auto"><a href="{% url 'homePage' %}"> Atrax</a>
+
+        <h1 class="logo me-auto"><a href="{% url 'homePage' %}"><img Src="{% static 'img/favicon-io.png' %}"></a>
         </h1>
         <nav id="navbar" class="navbar order-last order-lg-0">
             <ul>
@@ -11,7 +11,7 @@
                 <li><a href="{% url 'JobFosters' %}">Fosters</a></li>
                 <li><a href="{% url 'projects' %}">Projects</a></li>
                 <li><a href="{% url 'events' %}">Events</a></li>
-                <li class="dropdown"><a href="#"><span>Atrax Alumnis</span></a>
+                <li class="dropdown"><a href="#"><span>Alumnis</span></a>
                     <ul>
                         <li><a href="#">IT</a></li>
                         <li><a href="#">CSE</a></li>

@@ -323,12 +323,6 @@ h6 {
   padding: 0 5px 0 5px;
 }
 
-@media (max-width:600px) {
-  #header .logo a {
-    display: none !important;
-  }
-}
-
 .navbar-mobile {
   position: fixed;
   overflow: hidden;
