@@ -4,10 +4,10 @@
 <main id="main" data-aos="fade-in">
     <!-- ======= Trainers Section ======= -->
     <section id="trainers" class="trainers">
-        <div class="container" data-aos="fade-up">
+        <div class="container mt-5" data-aos="fade-up">
             {% for profile in profiles %}
             {% if profile.department == 'Computer Science Engineering' %}
-            <div class="row mt-5" data-aos="zoom-in" data-aos-delay="100">
+            <div class="row" data-aos="zoom-in" data-aos-delay="100">
                 <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
                     <div class="member">
                         <img src="{{profile.profile_picture.url}}" class="img-fluid" alt="">

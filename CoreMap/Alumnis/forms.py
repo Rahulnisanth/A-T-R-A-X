@@ -1,5 +1,6 @@
 from django.forms import ModelForm
 from .models import *
+from django import forms
 
 
 class ProjectForm(ModelForm):
@@ -14,6 +15,8 @@ class ProjectForm(ModelForm):
             "end_date",
             "project_link",
         ]
+
+    media = forms.FileField(widget=forms.FileInput(attrs={"id": "custom-file-input"}))
 
     def __init__(self, *args, **kwargs):
         super(ProjectForm, self).__init__(*args, **kwargs)

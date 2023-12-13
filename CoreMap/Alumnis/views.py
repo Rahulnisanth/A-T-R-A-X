@@ -37,6 +37,7 @@ def addProject(request):
             project = project_form.save(commit=False)
             project.owner = profile
             project.save()
+            messages.success(request, "Your new project is added successfully!")
             return redirect("projects")
     context = {"form": project_form}
     return render(request, "project-form.html", context)

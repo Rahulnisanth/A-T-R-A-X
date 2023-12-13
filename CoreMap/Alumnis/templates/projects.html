@@ -14,17 +14,17 @@
               <div class="d-flex justify-content-between align-items-center mb-3">
                 <h4>{{project.domain}}</h4>
                 <p class="price">
-                  <a href="#">
+                  <a style="text-decoration: none;color: #37423b;" href="#">
                     {% if request.user.profile in project.like.all %}
-                    <i class="bx bx-heart"></i>&nbsp;{{project.like.count}}
+                    <i class="bi bi-heart-fill"></i>&nbsp;{{project.like.count}}
                     {% else %}
-                    <i class="bx bx-heart"></i>&nbsp;{{project.like.count}}
+                    <i class="bi bi-heart"></i>&nbsp;{{project.like.count}}
                     {% endif %}
                   </a>
                 </p>
               </div>
               <h3><a href="#">{{project.name}}</a></h3>
-              <p>{{project.description | slice:"225"}}</p>
+              <p>{{project.description | slice:"200"}}</p>
 
               <div class="trainer d-flex justify-content-between align-items-center">
                 <div class="trainer-profile d-flex align-items-center">
