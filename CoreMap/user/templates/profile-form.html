@@ -1,0 +1,17 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+<div class="registration-form">
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="form-group">
+            {{field}}
+        </div>
+        {% endfor %}
+        <div class="form-group">
+            <button type="submit" class="btn btn-block create-account">Confirm</button>
+        </div>
+    </form>
+</div>
+{% endblock content %}

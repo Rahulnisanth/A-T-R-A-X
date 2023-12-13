@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from .forms import CustomUserCreationForm
+from django.contrib.auth.decorators import login_required
+from .forms import *
 
 
 # Create your views here.
@@ -45,3 +47,31 @@ def registerUser(request):
             return redirect("/")
     context = {"flag": flag, "form": form}
     return render(request, "authentication.html", context)
+
+
+@login_required(login_url="loginUser")
+def userProfile(request):
+    profile = request.user.profile
+    context = {"profile": profile}
+    return render(request, "user-profile.html", context)
+
+
+@login_required(login_url="loginUser")
+def editProfile(request):
+    profile = request.user.profile
+    form = ProfileForm(instance=profile)
+    if request.method == "POST":
+        form = ProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Your Profile has been updated successfully")
+            return redirect("user-profile")
+    context = {"form": form}
+    return render(request, "profile-form.html", context)
+
+
+def CSEProfiles(request):
+    targeted_departments = ["CSE", "Computer Science Engineering", "Computer Science"]
+    profiles = Profile.objects.filter(department__in=targeted_departments)
+    context = {"profiles": profiles}
+    return render(request, "profiles-cse.html", context)

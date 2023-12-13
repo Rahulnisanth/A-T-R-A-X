@@ -7,30 +7,28 @@
         <div class="container mt-2" data-aos="fade-up">
 
             <div class="row" data-aos="zoom-in" data-aos-delay="100">
-
+                {% for job in jobs %}
                 <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
                     <div class="course-item">
                         <div class="course-content">
                             <div class="d-flex justify-content-between align-items-center mb-3">
-                                <h4>Full-Stack Development</h4>
-                                <p class="price"><i class="bx bx-user"></i>&nbsp;50</p>
+                                <h4>{{job.role}}</h4>
+                                <p class="price">&#8377;{{job.average_salary}} / month</p>
                             </div>
-                            <h3><a href="#">Mr.Cooper Tech.Inc</a></h3>
-                            <p>Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores
-                                dolorem
-                                tempore.</p>
+                            <h3><a href="#">{{job.company_name}}</a></h3>
+                            <p>{{job.description | slice:"175"}} . . .</p>
                             <div class="trainer d-flex justify-content-between align-items-center">
                                 <div class="trainer-profile d-flex align-items-center">
-                                    <span>Hosted by Antonio</span>
+                                    <span>Mode : {{job.mode}}</span>
                                 </div>
                                 <div class="trainer-profile d-flex align-items-center">
-                                    <span>31 Jan 2024</span>
+                                    <span>{{job.location}}</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div> <!-- End Course Item-->
-
+                {% endfor %}
             </div>
 
         </div>

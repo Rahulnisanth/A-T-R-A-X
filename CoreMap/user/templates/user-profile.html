@@ -1,0 +1,25 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+<main>
+    {% if profile %}
+    <div class="editor" style="margin: 100px 100px ; text-align: center;">
+        <img style="width: 250px;" src="{{profile.profile_picture.url}}">
+        <h1>{{profile.username}}</h1>
+        <span>{{profile.department}},</span>
+        <span>{{profile.batch}}</span>
+        <h2>{{profile.location}}</h2>
+        <h4>{{profile.role}}</h4>
+        <h5>{{profile.email}}</h5>
+        <h6>{{profile.contact}}</h6>
+        <a href="{% url 'edit-profile' %}">Edit Profile</a>
+        <br />
+        <a href="{% url 'logoutUser' %}">Logout</a>
+        <br />
+        <a href="{% url 'add-project' %}">Add Project</a>
+        <br />
+        <a href="{% url 'add-job' %}">Share Job Opening</a>
+    </div>
+    {% endif %}
+</main>
+{% endblock content %}

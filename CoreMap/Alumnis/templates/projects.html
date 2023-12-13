@@ -6,33 +6,43 @@
   <section id="courses" class="courses mt-5">
     <div class="container mt-2" data-aos="fade-up">
       <div class="row" data-aos="zoom-in" data-aos-delay="100">
-
+        {% for project in projects %}
         <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
           <div class="course-item">
-            <img src="{% static 'img/course-1.jpg' %}" class="img-fluid" alt="...">
+            <img src="{{ project.media.url }}" class="img-fluid" alt="...">
             <div class="course-content">
               <div class="d-flex justify-content-between align-items-center mb-3">
-                <h4>Web Development</h4>
-                <p class="price">React | Django</p>
+                <h4>{{project.domain}}</h4>
+                <p class="price">
+                  <a href="#">
+                    {% if request.user.profile in project.like.all %}
+                    <i class="bx bx-heart"></i>&nbsp;{{project.like.count}}
+                    {% else %}
+                    <i class="bx bx-heart"></i>&nbsp;{{project.like.count}}
+                    {% endif %}
+                  </a>
+                </p>
               </div>
-              <h3><a href="#">E-Commerce Website</a></h3>
-              <p>Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem
-                tempore.</p>
+              <h3><a href="#">{{project.name}}</a></h3>
+              <p>{{project.description | slice:"225"}}</p>
+
               <div class="trainer d-flex justify-content-between align-items-center">
                 <div class="trainer-profile d-flex align-items-center">
-                  <img src="{% static 'img/trainers/trainer-1.jpg' %}" class="img-fluid" alt="">
-                  <span>Rahul Nisanth</span>
+                  <img src="{{project.owner.profile_picture.url}}" class="img-fluid" alt="">
+                  <span>{{project.owner}}</span>
                 </div>
                 <div class="trainer-rank d-flex align-items-center">
-                  <i class="bx bx-user"></i>&nbsp;50
-                  &nbsp;&nbsp;
-                  <i class="bx bx-heart"></i>&nbsp;65
+                  {% if project.end_date %}
+                  <span>{{project.end_date}}</span>
+                  {% else %}
+                  <span>Ongoing</span>
+                  {% endif %}
                 </div>
               </div>
             </div>
           </div>
         </div> <!-- End Course Item-->
-
+        {% endfor %}
       </div>
     </div>
   </section><!-- End Courses Section -->
