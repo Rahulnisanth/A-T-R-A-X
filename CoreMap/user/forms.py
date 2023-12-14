@@ -37,7 +37,6 @@ class ProfileForm(ModelForm):
     class Meta:
         model = Profile
         fields = [
-            "profile_picture",
             "username",
             "location",
             "role",
@@ -49,6 +48,7 @@ class ProfileForm(ModelForm):
             "github",
             "linkedin",
             "twitter",
+            "profile_picture",
         ]
 
     def __init__(self, *args, **kwargs):
