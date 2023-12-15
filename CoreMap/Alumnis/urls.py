@@ -6,7 +6,7 @@ urlpatterns = [
     # Projects Section:
     path("projects/", views.projects, name="projects"),
     path("add-project/", views.addProject, name="add-project"),
-    path("like-project/", views.likeProject, name="like-project"),
+    path("like-project/<str:pk>/", views.likeProject, name="like-project"),
     # Events Section:
     path("events/", views.events, name="events"),
     # Job openings Section:
