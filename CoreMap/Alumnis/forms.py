@@ -23,10 +23,10 @@ class ProjectForm(ModelForm):
         custom_names = {
             "domain": "Domain",
             "name": "Project Title",
-            "description": "Description",
+            "description": "Project Description",
             "start_date": "Started Date",
-            "end_date": "Ending Date",
-            "project_link": "Project Link",
+            "end_date": "Ended Date",
+            "project_link": "Project Link / GitHub Link",
         }
         for name, field in self.fields.items():
             field.widget.attrs.update(
