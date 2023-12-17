@@ -10,4 +10,9 @@ urlpatterns = [
     path("edit-profile/", views.editProfile, name="edit-profile"),
     # Profiles Dirs:
     path("profiles-cse/", views.CSEProfiles, name="profiles-cse"),
+    path("profiles-ece/", views.ECEProfiles, name="profiles-ece"),
+    path("profiles-it/", views.ITProfiles, name="profiles-it"),
+    path("profiles-aids/", views.AIDSProfiles, name="profiles-aids"),
+    path("profiles-cs/", views.CSProfiles, name="profiles-cs"),
+    path("profiles-aiml/", views.AIMLProfiles, name="profiles-aiml"),
 ]

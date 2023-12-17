@@ -25,6 +25,7 @@ def LoginUser(request):
     return render(request, "authentication.html", context)
 
 
+@login_required(login_url="loginUser")
 def logoutUser(request):
     logout(request)
     messages.error(request, "User have logged out from Atrax !")
@@ -75,3 +76,42 @@ def CSEProfiles(request):
     profiles = Profile.objects.filter(department__in=targeted_departments)
     context = {"profiles": profiles}
     return render(request, "profiles-cse.html", context)
+
+
+def ECEProfiles(request):
+    targeted_departments = [
+        "ECE",
+        "Electronics and Communication Engineering",
+        "Electronics and Communication ",
+    ]
+    profiles = Profile.objects.filter(department__in=targeted_departments)
+    context = {"profiles": profiles}
+    return render(request, "profiles-ece.html", context)
+
+
+def ITProfiles(request):
+    targeted_departments = ["IT", "Information Technology"]
+    profiles = Profile.objects.filter(department__in=targeted_departments)
+    context = {"profiles": profiles}
+    return render(request, "profiles-it.html", context)
+
+
+def AIDSProfiles(request):
+    targeted_departments = ["AIDS", "Artificial Intelligence and Data Science"]
+    profiles = Profile.objects.filter(department__in=targeted_departments)
+    context = {"profiles": profiles}
+    return render(request, "profiles-aids.html", context)
+
+
+def AIMLProfiles(request):
+    targeted_departments = ["AIML", "Artificial Intelligence and Machine Learning"]
+    profiles = Profile.objects.filter(department__in=targeted_departments)
+    context = {"profiles": profiles}
+    return render(request, "profiles-aiml.html", context)
+
+
+def CSProfiles(request):
+    targeted_departments = ["CS", "Cybersecurity", "Cyber"]
+    profiles = Profile.objects.filter(department__in=targeted_departments)
+    context = {"profiles": profiles}
+    return render(request, "profiles-cs.html", context)

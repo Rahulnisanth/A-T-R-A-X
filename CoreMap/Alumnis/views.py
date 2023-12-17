@@ -15,6 +15,7 @@ def projects(request):
     return render(request, "projects.html", context)
 
 
+@login_required(login_url="loginUser")
 def likeProject(request, pk):
     project = Project.objects.get(id=pk)
     if request.method == "GET" or request.method == "POST":
