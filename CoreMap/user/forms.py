@@ -38,6 +38,8 @@ class ProfileForm(ModelForm):
         model = Profile
         fields = [
             "username",
+            "batch",
+            "department",
             "location",
             "role",
             "email",

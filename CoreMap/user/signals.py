@@ -15,17 +15,17 @@ def createProfile(sender, instance, created, **kwargs):
             username=user.username,
             email=user.email,
         )
-        # Email config ->
-        subject = "Welcome to A T R A X - Where Innovation Meets Excellence!"
-        message = f"""Dear {profile.username}, Welcome to A T R A X ! """
+        # # Email config ->
+        # subject = "Welcome to A T R A X - Where Innovation Meets Excellence!"
+        # message = f"""Dear {profile.username}, Welcome to A T R A X ! """
 
-        send_mail(
-            subject,
-            message,
-            settings.EMAIL_HOST_USER,
-            [profile.email],
-            fail_silently=False,
-        )
+        # send_mail(
+        #     subject,
+        #     message,
+        #     settings.EMAIL_HOST_USER,
+        #     [profile.email],
+        #     fail_silently=False,
+        # )
 
 
 @receiver(post_save, sender=Profile)
