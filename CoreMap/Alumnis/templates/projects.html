@@ -1,6 +1,18 @@
 {% extends 'index.html' %}
 {% load static %}
 {% block content %}
+<style>
+  .course__preview {
+    width: 100%;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  .course__preview img {
+    width: 100%;
+    height: 200px;
+  }
+</style>
 <main id="main" data-aos="fade-in">
   <!-- ======= Courses Section ======= -->
   <section id="courses" class="courses mt-5">
@@ -9,7 +21,10 @@
         {% for project in projects %}
         <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
           <div class="course-item">
-            <img src="{{ project.media.url }}" class="img-fluid" alt="...">
+            <div class="course__preview">
+              <img src="{{ project.media.url }}" alt="...">
+            </div>
+
             <div class="course-content">
               <div class="d-flex justify-content-between align-items-center mb-3">
                 <h4>{{project.domain}}</h4>

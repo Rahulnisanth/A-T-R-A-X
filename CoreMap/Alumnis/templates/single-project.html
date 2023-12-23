@@ -16,21 +16,11 @@
                     <!-- tech-stack -->
                     <h3 class="singleProject__title">Tools & Stacks</h3>
                     <div class="singleProject__toolStack">
+                        {% for tag in project.tags.all %}
                         <span>
-                            <h4>Figma</h4>
+                            <h4>{{tag}}</h4>
                         </span>
-                        <span>
-                            <h4>React Js</h4>
-                        </span>
-                        <span>
-                            <h4>REST API</h4>
-                        </span>
-                        <span>
-                            <h4>GraphQL</h4>
-                        </span>
-                        <span>
-                            <h4>TypeScript</h4>
-                        </span>
+                        {% endfor %}
                     </div>
                     <!-- Links -->
                     <div style="gap: .5rem;" class="singleProject__upper">
@@ -72,37 +62,43 @@
                     <!-- Comments section -->
                     <div class="comments">
                         <h3 class="singleProject__subtitle">Feedback</h3>
-                        <h5>
-                            {{project.like.count}} Positive Votes
-                        </h5>
                         <!-- Comment form -->
-                        <form style="margin-top: -8px;" class="registration-form" action="#" method="POST">
-                            <div class="form-group mb-2">
-                                <h5>Add Comments here * </h5>
-                            </div>
+                        {% if request.user.profile.id in project.reviewers %}
+                        <h5>Hurray! You have already commented your review for this project.</h5>
+                        {% elif request.user.profile == project.owner %}
+                        <h5>OOPs! You can't comment for your own project.</h5>
+                        {% else %}
+                        <form class="form" action="" method="POST">
+                            {% csrf_token %}
+                            <!-- Textarea -->
                             <div class="form-group">
-                                <textarea name="message" class="form-control item" cols="5" rows="5"
-                                    placeholder="Write your comments here . . . "></textarea>
+                                {% for field in form %}
+                                {{field}}
+                                {% endfor %}
                             </div>
-                            <input class="btn-enrolls" type="submit" value="Comment" />
+                            <input class="btn-enrolls" type="submit" value="Add Comment" />
                         </form>
+                        {% endif %}
                         <!-- Comments List section -->
+                        {% if project.review_set.all %}
                         <div class="commentList">
+                            {% for review in project.review_set.all %}
                             <div class="comment">
                                 <div class="profile_pic">
                                     <a href="#">
-                                        <img class="avatar avatar--md" src="{% static 'img/about.jpg' %}" alt="user" />
+                                        <img class="avatar avatar--md" src="{{review.owner.profile_picture.url}}"
+                                            alt="user" />
                                     </a>
                                 </div>
                                 <div class="comment__details">
                                     <p>
-                                        soluta
-                                        ut similique! Iste soluta quae tempora alias assumenda? Nam nesciunt nihil enim
-                                        tempore cum quo
+                                        {{review.body}}
                                     </p>
                                 </div>
                             </div>
+                            {% endfor %}
                         </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>

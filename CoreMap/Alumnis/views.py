@@ -15,9 +15,20 @@ def projects(request):
     return render(request, "projects.html", context)
 
 
+@login_required(login_url="loginUser")
 def singleProject(request, pk):
     project = Project.objects.get(id=pk)
-    context = {"project": project}
+    form = ReviewForm()
+    if request.method == "POST":
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.owner = request.user.profile
+            review.project = project
+            review.save()
+            messages.success(request, "Your Review was Submitted Successfully!")
+            return redirect("single-project", pk=project.id)
+    context = {"project": project, "form": form}
     return render(request, "single-project.html", context)
 
 
@@ -39,11 +50,15 @@ def addProject(request):
     profile = request.user.profile
     project_form = ProjectForm(instance=profile)
     if request.method == "POST":
+        newtags = request.POST.get("newtags").replace(",", " ").split()
         project_form = ProjectForm(request.POST, request.FILES)
         if project_form.is_valid():
             project = project_form.save(commit=False)
             project.owner = profile
             project.save()
+            for tag in newtags:
+                tag, created = Tag.objects.get_or_create(name=tag)
+                project.tags.add(tag)
             messages.success(request, "Your new project is added successfully!")
             return redirect("projects")
     context = {"form": project_form}

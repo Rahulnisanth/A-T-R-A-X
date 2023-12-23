@@ -38,6 +38,27 @@ class ProjectForm(ModelForm):
             )
 
 
+class ReviewForm(ModelForm):
+    class Meta:
+        model = Review
+        fields = ["body"]
+        widgets = {
+            "body": forms.Textarea(attrs={"rows": 4, "cols": 5}),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super(ReviewForm, self).__init__(*args, **kwargs)
+
+        for name, field in self.fields.items():
+            field.widget.attrs.update(
+                {
+                    "class": "form-control item",
+                    "required": True,
+                    "placeholder": "Add your comments here . . . ",
+                }
+            )
+
+
 class JobForm(ModelForm):
     class Meta:
         model = Job

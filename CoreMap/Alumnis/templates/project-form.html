@@ -18,6 +18,21 @@
                         {{field}}
                     </div>
                     {% endfor %}
+                    {% if project.tags.all %}
+                    <div class="form-group">
+                        {% for tag in project.tags.all %}
+                        <div class="project-tag tag tag--pill tag--main" data-tag="{{tag.id}}"
+                            data-project="{{project.id}}">
+                            {{tag}} &#215;
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    <div class="form-group">
+                        <label>Tags *</label>
+                        <textarea class="form-control item" name="newtags" value="Add the tags here...."></textarea>
+                    </div>
+
                     <div class="form-group">
                         <button type="submit" class="btn btn-block create-account">Confirm</button>
                     </div>

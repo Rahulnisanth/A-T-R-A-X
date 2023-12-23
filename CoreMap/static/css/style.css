@@ -790,6 +790,7 @@ section {
 # Courses
 --------------------------------------------------------------*/
 .courses .course-item {
+  margin-bottom: 2rem;
   border-radius: 5px;
   border: 1px solid #eef0ef;
 }
@@ -840,8 +841,9 @@ section {
 }
 
 .courses .trainer .trainer-profile img {
-  max-width: 50px;
-  border-radius: 50px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
 }
 
 .courses .trainer .trainer-profile span {
@@ -1806,6 +1808,7 @@ section {
   font-weight: 700;
   color: var(--color-sub);
   margin-bottom: 1rem;
+  margin-top: -1.5rem;
 }
 
 
@@ -1818,6 +1821,7 @@ section {
 }
 
 .btn-enrolls {
+  margin-top: 2rem;
   border-radius: 30px;
   padding: 10px 20px;
   font-size: 18px;
@@ -1881,11 +1885,11 @@ section {
 }
 
 .avatar--md {
-  height: 6rem;
-  width: 6rem;
+  height: 5rem;
+  width: 5rem;
 }
 
 .avatar--sm {
-  height: 3rem;
-  width: 3rem;
+  height: 2.5rem;
+  width: 2.5rem;
 }

@@ -4,4 +4,5 @@ from .models import *
 # Register your models here.
 admin.site.register(Job)
 admin.site.register(Project)
-admin.site.register(TechTag)
+admin.site.register(Tag)
+admin.site.register(Review)
