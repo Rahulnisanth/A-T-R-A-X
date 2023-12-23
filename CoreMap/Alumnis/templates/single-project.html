@@ -2,79 +2,112 @@
 {% load static %}
 {% block content %}
 <!-- Main Section -->
-<section id="main" data-aos="fade-in">
+<style>
+    .singleProject__upper a {
+        margin-right: .5rem;
+    }
+</style>
+<main id="main" data-aos="fade-in">
     <section class="courses mt-5">
-        <div class="container">
-            <div class="layout">
-                <div class="column column--1of3">
-                    <h3>Tools & Stacks</h3>
+        {% if project %}
+        <div class="container mt-2" data-aos="fade-up">
+            <div class="row m-#">
+                <div class="col-lg-4">
+                    <!-- tech-stack -->
+                    <h3 class="singleProject__title">Tools & Stacks</h3>
                     <div class="singleProject__toolStack">
-                        <span class="tag tag--pill tag--sub tag--lg">
-                            <small>Figma</small>
+                        <span>
+                            <h4>Figma</h4>
                         </span>
-                        <span class="tag tag--pill tag--sub tag--lg">
-                            <small>React Js</small>
+                        <span>
+                            <h4>React Js</h4>
                         </span>
-                        <span class="tag tag--pill tag--sub tag--lg">
-                            <small>REST API</small>
+                        <span>
+                            <h4>REST API</h4>
                         </span>
-                        <span class="tag tag--pill tag--sub tag--lg">
-                            <small>GraphQL</small>
+                        <span>
+                            <h4>GraphQL</h4>
                         </span>
-                        <span class="tag tag--pill tag--sub tag--lg">
-                            <small>TypeScript</small>
+                        <span>
+                            <h4>TypeScript</h4>
                         </span>
                     </div>
-                    <a href="#" target="_blank">Source Code</a>
+                    <!-- Links -->
+                    <div style="gap: .5rem;" class="singleProject__upper">
+                        <h3>
+                            <a href="{{project.project_link}}" target="_blank"><i
+                                    class="bi bi-rocket-takeoff-fill"></i></a>
+                        </h3>
+                        <br />
+                        <h3>
+                            <a href="#" target="_blank"><i class="bi bi-github"></i></a>
+                        </h3>
+                        <br />
+                        <h3>
+                            <a href="#" target="_blank"><i class="bi bi-gear-fill"></i></a>
+                        </h3>
+                    </div>
                 </div>
-                <div class="column column--2of3">
-                    <img class="singleProject__preview" src="{% static 'img/about.jpg' %}" alt="portfolio thumbnail" />
-                    <a href="#">Md. Shahriar Parvez</a>
-                    <h2>Portfolio Landing Page for a Coding Mentor</h2>
-                    <h3>About the Project</h3>
-                    <div>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima harum maxime debitis amet
-                        voluptates
-                        esse
-                        a perferendis tempora, natus pariatur obcaecati odit quisquam fugit deserunt.
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic voluptates earum possimus a
-                        perferendis
-                        culpa
-                        omnis, libero quae soluta, obcaecati amet. Quam earum ad qui reprehenderit eligendi porro ab
-                        possimus
-                        fugit voluptatem rerum eius sapiente, nemo mollitia aperiam suscipit culpa corrupti officiis
-                        dicta
-                        soluta
-                        ut similique! Iste soluta quae tempora alias assumenda? Nam nesciunt nihil enim tempore cum quo
-                        architecto?
+                <div class="col-lg-8">
+                    <!-- Project image -->
+                    <div class="singleProject__container">
+                        <img class="singleProject__preview" src="{{project.media.url}}" alt="portfolio thumbnail" />
                     </div>
-
+                    <!-- Project author link -->
+                    <div class="singleProject__upper">
+                        <a href="#">
+                            <img class="avatar avatar--sm" src="{{project.owner.profile_picture.url}}" alt="user" />
+                        </a>
+                        <h3>
+                            <a href="#">{{project.owner}}</a>
+                        </h3>
+                    </div>
+                    <br />
+                    <!-- Project preview section -->
+                    <h2 class="singleProject__title">{{project.name}}</h2>
+                    <h3 class="singleProject__subtitle">About the Project</h3>
+                    <p>
+                        {{project.description}}
+                    </p>
+                    <!-- Comments section -->
                     <div class="comments">
                         <h3 class="singleProject__subtitle">Feedback</h3>
-                        <h5 class="project--rating">
-                            36 Postitive Votes
+                        <h5>
+                            {{project.like.count}} Positive Votes
                         </h5>
-
-                        <form class="form-group" action="#" method="POST">
-                            <!-- Textarea -->
-                            <div class="form-group">
-                                <label for="formInput#textarea">Comments: </label>
-                                <textarea name="message" id="formInput#textarea"
-                                    placeholder="Write your comments here..."></textarea>
+                        <!-- Comment form -->
+                        <form style="margin-top: -8px;" class="registration-form" action="#" method="POST">
+                            <div class="form-group mb-2">
+                                <h5>Add Comments here * </h5>
                             </div>
-                            <input class="btn" type="submit" value="Comments" />
+                            <div class="form-group">
+                                <textarea name="message" class="form-control item" cols="5" rows="5"
+                                    placeholder="Write your comments here . . . "></textarea>
+                            </div>
+                            <input class="btn-enrolls" type="submit" value="Comment" />
                         </form>
+                        <!-- Comments List section -->
                         <div class="commentList">
                             <div class="comment">
-                                <a href="profile.html">
-                                    <img class="avatar avatar--md" src="{% static 'img/about.jpg' %}" alt="user" />
-                                </a>
+                                <div class="profile_pic">
+                                    <a href="#">
+                                        <img class="avatar avatar--md" src="{% static 'img/about.jpg' %}" alt="user" />
+                                    </a>
+                                </div>
+                                <div class="comment__details">
+                                    <p>
+                                        soluta
+                                        ut similique! Iste soluta quae tempora alias assumenda? Nam nesciunt nihil enim
+                                        tempore cum quo
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        {% endif %}
     </section>
-    </main>
-    {% endblock content %}
+</main>
+{% endblock content %}
