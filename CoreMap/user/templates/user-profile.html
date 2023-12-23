@@ -1,25 +1,129 @@
 {% extends 'index.html' %}
 {% load static %}
 {% block content %}
-<main>
-    {% if profile %}
-    <div class="editor" style="margin: 100px 100px ; text-align: center;">
-        <img style="width: 250px;" src="{{profile.profile_picture.url}}">
-        <h1>{{profile.username}}</h1>
-        <span>{{profile.department}},</span>
-        <span>{{profile.batch}}</span>
-        <h2>{{profile.location}}</h2>
-        <h4>{{profile.role}}</h4>
-        <h5>{{profile.email}}</h5>
-        <h6>{{profile.contact}}</h6>
-        <a href="{% url 'edit-profile' %}">Edit Profile</a>
-        <br />
-        <a href="{% url 'logoutUser' %}">Logout</a>
-        <br />
-        <a href="{% url 'add-project' %}">Add Project</a>
-        <br />
-        <a href="{% url 'add-job' %}">Share Job Opening</a>
-    </div>
-    {% endif %}
+<main class="main" data-aos="fade-in">
+    <section class="course mt-5">
+        <div class="container mt-2">
+            <div class="row m-#">
+                <div class="col-lg-4 mt-2" data-aos="fade-in">
+                    <div class="card text-center">
+                        <div class="card__body dev">
+                            <div class="editor__btn">
+                                <a class="tag tag--pill tag--main settings__btn" href="#">
+                                    Edit <i class="bi bi-pen"></i></a>
+                            </div>
+                            <img class="avatar avatar--xl dev__avatar" src="{{profile.profile_picture.url}}" />
+                            <br />
+                            <h2>{{profile.username}}</h2>
+                            <p>{{profile.role}}
+                                <br />Based in {{profile.location}}
+                            </p>
+                            <ul class="profile__lists d-flex align-items-center justify-content-center gap-2">
+                                {% if profile.github %}
+                                <li>
+                                    <a title="Github" href="{{profile.github}}" target="_blank"><i
+                                            class="bi bi-github"></i></a>
+                                </li>
+                                {% endif %}
+
+                                {% if profile.linkedin %}
+                                <li>
+                                    <a title="Linkedin" href="{{profile.linkedin}}" target="_blank"><i
+                                            class="bi bi-linkedin"></i></a>
+                                </li>
+                                {% endif %}
+
+                                {% if profile.twitter %}
+                                <li>
+                                    <a title="Twitter" href="{{profile.twitter}}" target="_blank"><i
+                                            class="bi bi-twitter"></i></a>
+                                </li>
+                                {% endif %}
+
+                                {% if profile.website %}
+                                <li>
+                                    <a title="Personal Website" href="{{profile.website}}" target="_blank"><i
+                                            class="bi bi-globe"></i></a>
+                                </li>
+                                {% endif %}
+                            </ul>
+                            <div class="btn-container">
+                                <a href="#" class="btn btn--sm">Messages</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="devInfo">
+                        <h3 class="devInfo__title">About Me</h3>
+                        <p class="devInfo__about">
+                            <i class="bi bi-hashtag"></i> {{profile.batch}} {{profile.department}}
+                            <br />
+                            <br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{profile.bio|linebreaksbr}}
+                        </p>
+                    </div>
+                    <div class="settings">
+                        <h3 class="settings__title">Skills</h3>
+                        <a class="tag tag--pill tag--sub settings__btn tag--lg" href="#"> <i
+                                class="fa-solid fa-plus"></i>
+                            Add Skill</a>
+                    </div>
+                    <!-- SKILL-SET TABLE -->
+                    <table class="settings__table">
+                        <tr>
+                            <td class="settings__tableInfo">
+                                <h4>React</h4>
+                                <p>
+                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                                    Ipsum
+                                    has
+                                    been the industry's standard dummy text ever since the 1500s,
+                                </p>
+                            </td>
+                            <td class="settings__tableActions">
+                                <a class="tag tag--pill tag--main settings__btn" href="#">
+                                    Edit</a>
+                                <a class="tag tag--pill tag--main settings__btn" href="#">Delete</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="settings__tableInfo">
+                                <h4>React</h4>
+                                <p>
+                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                                    Ipsum
+                                    has
+                                    been the industry's standard dummy text ever since the 1500s,
+                                </p>
+                            </td>
+                            <td class="settings__tableActions">
+                                <a class="tag tag--pill tag--main settings__btn" href="#">
+                                    Edit</a>
+                                <a class="tag tag--pill tag--main settings__btn" href="#">Delete</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="settings__tableInfo">
+                                <h4>React</h4>
+                                <p>
+                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                                    Ipsum
+                                    has
+                                    been the industry's standard dummy text ever since the 1500s,
+                                </p>
+                            </td>
+                            <td class="settings__tableActions">
+                                <a class="tag tag--pill tag--main settings__btn" href="#">
+                                    Edit</a>
+                                <a class="tag tag--pill tag--main settings__btn" href="#">Delete</a>
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </section>
 </main>
 {% endblock content %}
