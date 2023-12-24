@@ -115,3 +115,52 @@ def CSProfiles(request):
     profiles = Profile.objects.filter(department__in=targeted_departments)
     context = {"profiles": profiles}
     return render(request, "profiles-cs.html", context)
+
+
+@login_required(login_url="loginUser")
+def addSkill(request):
+    profile = request.user.profile
+    form = SkillForm()
+    if request.method == "POST":
+        form = SkillForm(request.POST)
+        if form.is_valid():
+            skill = form.save(commit=False)
+            skill.owner = profile
+            skill.save()
+            messages.success(request, "New Skill has been added successfully")
+            return redirect("user-profile")
+    context = {"form": form}
+    return render(request, "skill-form.html", context)
+
+
+@login_required(login_url="loginUser")
+def editSkill(request, pk):
+    profile = request.user.profile
+    skill = profile.skill_set.get(id=pk)
+    form = SkillForm(instance=skill)
+    if request.method == "POST":
+        form = SkillForm(request.POST, instance=skill)
+        if form.is_valid():
+            form.save()
+            messages.success(request, f"Successfully edited {skill.name}")
+            return redirect("user-profile")
+    context = {"form": form}
+    return render(request, "skill-form.html", context)
+
+
+def deleteSkill(request, pk):
+    profile = request.user.profile
+    skill = profile.skill_set.get(id=pk)
+    if request.method == "POST":
+        skill.delete()
+        messages.error(request, f"{skill.name} has been deleted!")
+        return redirect("user-profile")
+    context = {"skill": skill}
+    return render(request, "delete-skill.html", context)
+
+
+@login_required(login_url="loginUser")
+def userProjects(request):
+    profile = request.user.profile
+    context = {"profile": profile}
+    return render(request, "user-projects.html", context)

@@ -360,11 +360,9 @@ h6 {
   }
 }
 
-.profileIcon {
+#profileIcon i {
   color: #18d26e;
   font-size: 2rem;
-  margin-left: 1rem;
-  padding: 0 5px 0 5px;
 }
 
 .navbar-mobile {

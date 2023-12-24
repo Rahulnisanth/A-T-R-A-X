@@ -1,126 +1,145 @@
 {% extends 'index.html' %}
 {% load static %}
 {% block content %}
+<style>
+    .card {
+        box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+        border: none;
+    }
+
+    h2 {
+        font-weight: 700;
+        font-size: 30px;
+    }
+
+    .card-images-up {
+        margin-top: 1rem;
+        padding: 1rem 1rem;
+    }
+
+    .edit-btn {
+        color: #5fcf80 !important;
+        font-weight: 700;
+        border-radius: 20px;
+        border: 1px solid #5fcf80;
+        padding: .5rem 1rem;
+        transition: .1s ease-in;
+    }
+
+    .edit-btn:hover {
+        background-color: #5fcf80;
+        color: white !important;
+    }
+
+    .card a {
+        text-decoration: none !important;
+        color: #5fcf80 !important;
+    }
+
+    .card-body ul {
+        margin-left: -1rem;
+    }
+
+    .card-body ul>li {
+        list-style: none;
+        margin-right: 1rem;
+        font-size: 1.5rem;
+    }
+
+    .avatar--lg {
+        border: .5rem solid #5fcf80;
+    }
+</style>
 <main class="main" data-aos="fade-in">
     <section class="course mt-5">
         <div class="container mt-2">
             <div class="row m-#">
                 <div class="col-lg-4 mt-2" data-aos="fade-in">
                     <div class="card text-center">
-                        <div class="card__body dev">
-                            <div class="editor__btn">
-                                <a class="tag tag--pill tag--main settings__btn" href="#">
-                                    Edit <i class="bi bi-pen"></i></a>
+                        <div class="card-upper">
+                            <div class="card-images-up">
+                                <h5 class="mb-4">
+                                    <a class="edit-btn" href="{% url 'edit-profile' %}"><i class="bi bi-pen"></i>
+                                        Editor</a>
+                                </h5>
+                                <img class="avatar avatar--lg" src="{{profile.profile_picture.url}}" />
                             </div>
-                            <img class="avatar avatar--xl dev__avatar" src="{{profile.profile_picture.url}}" />
-                            <br />
-                            <h2>{{profile.username}}</h2>
-                            <p>{{profile.role}}
-                                <br />Based in {{profile.location}}
-                            </p>
-                            <ul class="profile__lists d-flex align-items-center justify-content-center gap-2">
-                                {% if profile.github %}
-                                <li>
-                                    <a title="Github" href="{{profile.github}}" target="_blank"><i
-                                            class="bi bi-github"></i></a>
-                                </li>
-                                {% endif %}
+                            <div class="card-body">
+                                <h2>{{profile.username}}</h2>
+                                <p>{{profile.role}}
+                                    <br />Based in {{profile.location}}
+                                </p>
+                                <ul class="profile__lists d-flex align-items-center justify-content-center">
+                                    {% if profile.github %}
+                                    <li>
+                                        <a title="Github" href="{{profile.github}}" target="_blank"><i
+                                                class="bi bi-github"></i></a>
+                                    </li>
+                                    {% endif %}
 
-                                {% if profile.linkedin %}
-                                <li>
-                                    <a title="Linkedin" href="{{profile.linkedin}}" target="_blank"><i
-                                            class="bi bi-linkedin"></i></a>
-                                </li>
-                                {% endif %}
+                                    {% if profile.linkedin %}
+                                    <li>
+                                        <a title="Linkedin" href="{{profile.linkedin}}" target="_blank"><i
+                                                class="bi bi-linkedin"></i></a>
+                                    </li>
+                                    {% endif %}
 
-                                {% if profile.twitter %}
-                                <li>
-                                    <a title="Twitter" href="{{profile.twitter}}" target="_blank"><i
-                                            class="bi bi-twitter"></i></a>
-                                </li>
-                                {% endif %}
+                                    {% if profile.twitter %}
+                                    <li>
+                                        <a title="Twitter" href="{{profile.twitter}}" target="_blank"><i
+                                                class="bi bi-twitter"></i></a>
+                                    </li>
+                                    {% endif %}
 
-                                {% if profile.website %}
-                                <li>
-                                    <a title="Personal Website" href="{{profile.website}}" target="_blank"><i
-                                            class="bi bi-globe"></i></a>
-                                </li>
-                                {% endif %}
-                            </ul>
-                            <div class="btn-container">
-                                <a href="#" class="btn btn--sm">Messages</a>
+                                    {% if profile.website %}
+                                    <li>
+                                        <a title="Personal Website" href="{{profile.website}}" target="_blank"><i
+                                                class="bi bi-globe"></i></a>
+                                    </li>
+                                    {% endif %}
+                                </ul>
+                                <div class="mt-2 mb-3">
+                                    <a href="#" class="edit-btn">Messages</a>
+                                    <a href="#" class="edit-btn">Bookmarks</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-8">
-                    <div class="devInfo">
-                        <h3 class="devInfo__title">About Me</h3>
-                        <p class="devInfo__about">
-                            <i class="bi bi-hashtag"></i> {{profile.batch}} {{profile.department}}
-                            <br />
+                    <div class="about-info mt-3">
+                        <h2>About Me</h2>
+                        <p class="my-3 pb-2">
+                            <i class="bi bi-tags"></i> {{profile.batch}} {{profile.department}}
                             <br />
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{profile.bio|linebreaksbr}}
                         </p>
                     </div>
-                    <div class="settings">
-                        <h3 class="settings__title">Skills</h3>
-                        <a class="tag tag--pill tag--sub settings__btn tag--lg" href="#"> <i
-                                class="fa-solid fa-plus"></i>
-                            Add Skill</a>
+                    <!-- SKILL ADDING SECTION HEADER -->
+                    <div class="skill_header d-flex justify-content-between">
+                        <h2>Skills</h2>
+                        <a class="edit-btn" href="{% url 'add-skill' %}">Add Skill</a>
                     </div>
                     <!-- SKILL-SET TABLE -->
-                    <table class="settings__table">
+                    {% if profile.skill_set %}
+                    <table class="settings__table mt-2">
+                        {% for skill in profile.skill_set.all %}
                         <tr>
-                            <td class="settings__tableInfo">
-                                <h4>React</h4>
+                            <td>
+                                <h4>{{skill.name}}</h4>
                                 <p>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                                    Ipsum
-                                    has
-                                    been the industry's standard dummy text ever since the 1500s,
+                                    {{skill.description}}
                                 </p>
                             </td>
-                            <td class="settings__tableActions">
-                                <a class="tag tag--pill tag--main settings__btn" href="#">
-                                    Edit</a>
-                                <a class="tag tag--pill tag--main settings__btn" href="#">Delete</a>
+                            <td class="d-flex flex-wrap gap-1 ms-2 mt-2 justify-content-end">
+                                <a class="edit-btn" href="{% url 'edit-skill' skill.id %}">
+                                    <i class="bi bi-pen"></i></a>
+                                <a class="edit-btn" href="#"><i class="bi bi-trash3-fill"></i></a>
                             </td>
                         </tr>
-                        <tr>
-                            <td class="settings__tableInfo">
-                                <h4>React</h4>
-                                <p>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                                    Ipsum
-                                    has
-                                    been the industry's standard dummy text ever since the 1500s,
-                                </p>
-                            </td>
-                            <td class="settings__tableActions">
-                                <a class="tag tag--pill tag--main settings__btn" href="#">
-                                    Edit</a>
-                                <a class="tag tag--pill tag--main settings__btn" href="#">Delete</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="settings__tableInfo">
-                                <h4>React</h4>
-                                <p>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                                    Ipsum
-                                    has
-                                    been the industry's standard dummy text ever since the 1500s,
-                                </p>
-                            </td>
-                            <td class="settings__tableActions">
-                                <a class="tag tag--pill tag--main settings__btn" href="#">
-                                    Edit</a>
-                                <a class="tag tag--pill tag--main settings__btn" href="#">Delete</a>
-                            </td>
-                        </tr>
+                        {% endfor %}
                     </table>
-
+                    {% endif %}
                 </div>
             </div>
         </div>

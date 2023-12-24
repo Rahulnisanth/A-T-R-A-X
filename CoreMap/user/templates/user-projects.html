@@ -1,0 +1,69 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+<style>
+    .course__preview {
+        width: 100%;
+        object-fit: contain;
+        object-position: center;
+    }
+
+    .course__preview img {
+        width: 100%;
+        height: 200px;
+    }
+</style>
+<main id="main" data-aos="fade-in">
+    <!-- ======= Courses Section ======= -->
+    {% if profile.project_set %}
+    <section id="courses" class="courses mt-5">
+        <div class="container mt-2" data-aos="fade-up">
+            <div class="row" data-aos="zoom-in" data-aos-delay="100">
+                {% for project in profile.project_set.all %}
+                <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                    <div class="course-item">
+                        <div class="course__preview">
+                            <img src="{{ project.media.url }}" alt="...">
+                        </div>
+
+                        <div class="course-content">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h4>{{project.domain}}</h4>
+                                <p class="price">
+                                    <a style="text-decoration: none;color: #37423b;"
+                                        href="{% url 'like-project' project.id %}">
+                                        {% if request.user.profile in project.like.all %}
+                                        <i class="bi bi-heart-fill"></i>&nbsp;{{project.like.count}}
+                                        {% else %}
+                                        <i class="bi bi-heart"></i>&nbsp;{{project.like.count}}
+                                        {% endif %}
+                                    </a>
+                                </p>
+                            </div>
+                            <h3><a href="{% url 'single-project' project.id %}">{{project.name}}</a></h3>
+                            <p>{{project.description | slice:"200"}}</p>
+
+                            <div class="trainer d-flex justify-content-between align-items-center">
+                                <div class="trainer-profile d-flex align-items-center">
+                                    <img src="{{project.owner.profile_picture.url}}" class="img-fluid" alt="">
+                                    <span>{{project.owner}}</span>
+                                </div>
+                                <div class="trainer-rank d-flex align-items-center">
+                                    {% if project.end_date %}
+                                    <span>{{project.end_date}}</span>
+                                    {% else %}
+                                    <span>Ongoing</span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- End Course Item-->
+                {% endfor %}
+            </div>
+        </div>
+    </section><!-- End Courses Section -->
+    {% endif %}
+</main><!-- End #main -->
+
+{% endblock content %}

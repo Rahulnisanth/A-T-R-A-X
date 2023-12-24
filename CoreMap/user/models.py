@@ -32,3 +32,16 @@ class Profile(models.Model):
 
     def __str__(self):
         return str(self.username)
+
+
+class Skill(models.Model):
+    owner = models.ForeignKey(Profile, null=True, blank=True, on_delete=models.CASCADE)
+    name = models.CharField(max_length=200, null=True, blank=True)
+    description = models.TextField(max_length=1000, null=True, blank=True)
+    created = models.DateTimeField(auto_now_add=True)
+    id = models.UUIDField(
+        default=uuid.uuid4, editable=False, unique=True, primary_key=True
+    )
+
+    def __str__(self):
+        return str(self.name)
