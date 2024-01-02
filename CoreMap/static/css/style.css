@@ -1630,6 +1630,7 @@ section {
 
 /* Registration form */
 .registration-form {
+  width: 100%;
   margin-top: 40px;
   padding: 20px 0;
 }
